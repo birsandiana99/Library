@@ -75,7 +75,7 @@ def login():
     if request.method == 'POST':
         user = request.form['username']
         passw = request.form['password']
-        login = user.query.filter_by(username=user, password=passw).first()
+        login = User.query.filter_by(username=user, password=passw).first()
         if login is not None:
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
