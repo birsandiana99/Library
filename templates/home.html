@@ -1,0 +1,37 @@
+<html>
+
+<body style = "background: url(https://cdn.wallpapersafari.com/83/55/WbvsGD.jpg) no-repeat; background-size: 100%">
+    <form method="POST" action="/home">
+      <label for="title">Title</label>
+      <input type="text" name="title">
+      <label for="author">Author</label>
+      <input type="text" name="author">
+      <input type="submit" value="Add">
+      <a href="{{ url_for('costumers')}}">Customers</a>
+    </form>
+
+
+    <h1>Books</h1>
+    {% for book in books %}
+      <p>{{book.title}} {{book.author}}</p>
+    <form method="POST" action="./update_title">
+      <input type="hidden" value="{{book.title}}" name="oldtitle">
+      <input type="text" value="{{book.title}}" name="newtitle">
+      <input type="submit" value="Update Title">
+    </form>
+    <form method="POST" action="./update_author">
+      <input type="hidden" value="{{book.title}}" name="title">
+      <input type="text" value="{{book.author}}" name="newauthor">
+      <input type="submit" value="Update Author">
+    </form>
+     <form method="POST" action="./delete">
+      <input type="hidden" value="{{book.title}}" name="title">
+      <input type="submit" value="Delete Book">
+    </form>
+
+    {% endfor %}
+
+  </body>
+
+
+</html>
